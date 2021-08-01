@@ -1,0 +1,9 @@
+# -*- mode: Makefile;-*-
+
+MODULES += src/libpng/libpng12
+MODULES += src/libpng/libpng14
+MODULES += src/libpng/libpng15
+MODULES += src/libpng/libpng16
+MODULES += src/freetype2
+MODULES += src/pixman
+MODULES += src/fontconfig
