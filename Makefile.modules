@@ -4,6 +4,261 @@ MODULES += src/libpng/libpng12
 MODULES += src/libpng/libpng14
 MODULES += src/libpng/libpng15
 MODULES += src/libpng/libpng16
+
 MODULES += src/freetype2
 MODULES += src/pixman
 MODULES += src/fontconfig
+
+MODULES += src/xorg/util/macros
+
+MODULES += src/xorg/doc/xorg-docs
+MODULES += src/xorg/doc/xorg-sgml-doctools
+
+MODULES += src/xorg/proto/xorgproto
+MODULES += src/xorg/proto/xcbproto
+
+MODULES += src/xorg/util/bdftopcf
+MODULES += src/xorg/util/lndir
+
+MODULES += src/xorg/font/util
+
+MODULES += src/xorg/lib/libxtrans
+MODULES += src/xorg/lib/pthread-stubs
+
+MODULES += src/xorg/lib/libXau
+
+MODULES += src/xorg/lib/libxcb
+MODULES += src/xorg/lib/libxcb-util
+MODULES += src/xorg/lib/libxcb-render-util
+MODULES += src/xorg/lib/libxcb-image
+MODULES += src/xorg/lib/libxcb-cursor
+MODULES += src/xorg/lib/libxcb-errors
+MODULES += src/xorg/lib/libxcb-keysyms
+MODULES += src/xorg/lib/libxcb-wm
+
+MODULES += src/xorg/lib/libXdmcp
+MODULES += src/xorg/lib/libX11
+MODULES += src/xorg/lib/libXext
+MODULES += src/xorg/lib/libAppleWM
+MODULES += src/xorg/lib/libdmx
+MODULES += src/xorg/lib/libfontenc
+MODULES += src/xorg/lib/libxshmfence
+MODULES += src/xorg/lib/libFS
+MODULES += src/xorg/lib/libICE
+MODULES += src/xorg/lib/libSM
+
+MODULES += src/xorg/lib/libXt-flatnamespace
+
+# this isn't a submodule
+#MODULES += src/xorg/lib/libXt7-stub
+
+MODULES += src/xorg/lib/libXt
+MODULES += src/xorg/lib/libXmu
+MODULES += src/xorg/lib/libXpm
+
+# Bincompat
+MODULES += src/xorg/lib/libXaw8
+
+MODULES += src/xorg/lib/libXaw
+MODULES += src/xorg/lib/libXaw3d
+MODULES += src/xorg/lib/libXfixes
+MODULES += src/xorg/lib/libXcomposite
+MODULES += src/xorg/lib/libXrender
+MODULES += src/xorg/lib/libXdamage
+MODULES += src/xorg/lib/libXcursor
+MODULES += src/xorg/lib/libXfont
+MODULES += src/xorg/lib/libXfont2
+MODULES += src/xorg/lib/libXxf86vm
+MODULES += src/xorg/lib/libXft
+MODULES += src/xorg/lib/libXi
+MODULES += src/xorg/lib/libXinerama
+MODULES += src/xorg/lib/libxkbfile
+MODULES += src/xorg/lib/libXrandr
+MODULES += src/xorg/lib/libXpresent
+MODULES += src/xorg/lib/libXres
+MODULES += src/xorg/lib/libXScrnSaver
+MODULES += src/xorg/lib/libXtst
+MODULES += src/xorg/lib/libXv
+MODULES += src/xorg/lib/libXvMC
+
+# Bincompat
+MODULES += src/xorg/lib/libxkbui
+MODULES += src/xorg/lib/libXp
+MODULES += src/xorg/lib/libXevie
+MODULES += src/xorg/lib/libXfontcache
+MODULES += src/xorg/lib/libXTrap
+MODULES += src/xorg/lib/libXxf86misc
+
+MODULES += src/xorg/data/bitmaps
+
+MODULES += src/xorg/app/appres
+MODULES += src/xorg/app/beforelight
+MODULES += src/xorg/app/bitmap
+MODULES += src/xorg/app/editres
+MODULES += src/xorg/app/fonttosfnt
+MODULES += src/xorg/app/fslsfonts
+MODULES += src/xorg/app/fstobdf
+MODULES += src/xorg/app/iceauth
+MODULES += src/xorg/app/ico
+MODULES += src/xorg/app/listres
+MODULES += src/xorg/app/luit
+MODULES += src/xorg/app/mkfontdir
+MODULES += src/xorg/app/mkfontscale
+MODULES += src/xorg/app/oclock
+MODULES += src/xorg/app/quartz-wm
+MODULES += src/xorg/app/rgb
+MODULES += src/xorg/app/sessreg
+MODULES += src/xorg/app/setxkbmap
+MODULES += src/xorg/app/showfont
+MODULES += src/xorg/app/smproxy
+MODULES += src/xorg/app/twm
+MODULES += src/xorg/app/viewres
+MODULES += src/xorg/app/xauth
+MODULES += src/xorg/app/xbacklight
+MODULES += src/xorg/app/xcalc
+MODULES += src/xorg/app/xclipboard
+MODULES += src/xorg/app/xclock
+MODULES += src/xorg/app/xcmsdb
+MODULES += src/xorg/app/xcompmgr
+MODULES += src/xorg/app/xconsole
+MODULES += src/xorg/app/xcursorgen
+MODULES += src/xorg/app/xditview
+MODULES += src/xorg/app/xdm
+MODULES += src/xorg/app/xdpyinfo
+MODULES += src/xorg/app/xedit
+MODULES += src/xorg/app/xev
+MODULES += src/xorg/app/xeyes
+MODULES += src/xorg/app/xfd
+MODULES += src/xorg/app/xfontsel
+MODULES += src/xorg/app/xfs
+MODULES += src/xorg/app/xfsinfo
+MODULES += src/xorg/app/xgamma
+MODULES += src/xorg/app/xgc
+MODULES += src/xorg/app/xhost
+MODULES += src/xorg/app/xinit
+MODULES += src/xorg/app/xinput
+MODULES += src/xorg/app/xkbcomp
+MODULES += src/xorg/app/xkbevd
+MODULES += src/xorg/app/xkbprint
+MODULES += src/xorg/app/xkbutils
+MODULES += src/xorg/app/xkill
+MODULES += src/xorg/app/xload
+MODULES += src/xorg/app/xlogo
+MODULES += src/xorg/app/xlsatoms
+MODULES += src/xorg/app/xlsclients
+MODULES += src/xorg/app/xlsfonts
+MODULES += src/xorg/app/xmag
+MODULES += src/xorg/app/xman
+MODULES += src/xorg/app/xmessage
+MODULES += src/xorg/app/xmh
+MODULES += src/xorg/app/xmodmap
+MODULES += src/xorg/app/xmore
+MODULES += src/xorg/app/xpr
+MODULES += src/xorg/app/xprop
+MODULES += src/xorg/app/xrandr
+MODULES += src/xorg/app/xrdb
+MODULES += src/xorg/app/xrefresh
+MODULES += src/xorg/app/xscope
+MODULES += src/xorg/app/xset
+MODULES += src/xorg/app/xsetmode
+MODULES += src/xorg/app/xsetpointer
+MODULES += src/xorg/app/xsetroot
+MODULES += src/xorg/app/xsm
+MODULES += src/xorg/app/xstdcmap
+MODULES += src/xorg/app/xvinfo
+MODULES += src/xorg/app/xwd
+MODULES += src/xorg/app/xwininfo
+MODULES += src/xorg/app/xwud
+
+MODULES += src/xterm
+
+MODULES += src/xorg/data/cursors
+
+MODULES += src/xorg/font/encodings
+MODULES += src/xorg/font/adobe-100dpi
+MODULES += src/xorg/font/adobe-75dpi
+MODULES += src/xorg/font/adobe-utopia-100dpi
+MODULES += src/xorg/font/adobe-utopia-75dpi
+MODULES += src/xorg/font/adobe-utopia-type1
+MODULES += src/xorg/font/alias
+MODULES += src/xorg/font/arabic-misc
+MODULES += src/xorg/font/bh-100dpi
+MODULES += src/xorg/font/bh-75dpi
+MODULES += src/xorg/font/bh-lucidatypewriter-100dpi
+MODULES += src/xorg/font/bh-lucidatypewriter-75dpi
+MODULES += src/xorg/font/bh-ttf
+MODULES += src/xorg/font/bh-type1
+MODULES += src/xorg/font/bitstream-100dpi
+MODULES += src/xorg/font/bitstream-75dpi
+MODULES += src/xorg/font/bitstream-speedo
+MODULES += src/xorg/font/bitstream-type1
+MODULES += src/xorg/font/cronyx-cyrillic
+MODULES += src/xorg/font/cursor-misc
+MODULES += src/xorg/font/daewoo-misc
+MODULES += src/xorg/font/dec-misc
+MODULES += src/xorg/font/ibm-type1
+MODULES += src/xorg/font/isas-misc
+MODULES += src/xorg/font/jis-misc
+MODULES += src/xorg/font/micro-misc
+MODULES += src/xorg/font/misc-cyrillic
+MODULES += src/xorg/font/misc-ethiopic
+MODULES += src/xorg/font/misc-meltho
+MODULES += src/xorg/font/misc-misc
+MODULES += src/xorg/font/mutt-misc
+MODULES += src/xorg/font/schumacher-misc
+MODULES += src/xorg/font/screen-cyrillic
+MODULES += src/xorg/font/sony-misc
+MODULES += src/xorg/font/sun-misc
+MODULES += src/xorg/font/winitzki-cyrillic
+MODULES += src/xorg/font/xfree86-type1
+
+#do_meson_build src/mesa/mesa ${ARCHS_LIB}
+MODULES += src/mesa/glu
+MODULES += src/freeglut
+
+# Manually build glxinfo and glxgears
+#setup_environment ${ARCHS_BIN}
+#cd ${BASE_DIR}/src/mesa/demos/src/xdemos
+#${CC} ${CPPFLAGS} ${CFLAGS} -c glxinfo.c
+#${CC} ${CPPFLAGS} ${CFLAGS} -c glinfo_common.c
+#${CC} ${CPPFLAGS} ${CFLAGS} -c glxgears.c
+#${CC} ${LDFLAGS} glxinfo.o glinfo_common.o -lGL -lX11 -o glxinfo
+#${CC} ${LDFLAGS} glxgears.o -lGL -lX11 -o glxgears
+#
+#sudo install -o root -g wheel -m 0755 -d ${DESTDIR}${PREFIX}/bin
+#sudo install -o root -g wheel -m 0755 glxinfo ${DESTDIR}${PREFIX}/bin
+#sudo install -o root -g wheel -m 0755 glxgears ${DESTDIR}${PREFIX}/bin
+#
+#sudo install -o root -g wheel -m 0755 -d ${PREFIX}/bin
+#sudo install -o root -g wheel -m 0755 glxinfo ${PREFIX}/bin
+#sudo install -o root -g wheel -m 0755 glxgears ${PREFIX}/bin
+
+MODULES += src/cairo
+
+# TODO: xpyb
+# MODULES += src/xorg/lib/xpyb
+
+MODULES += src/xkeyboard-config
+
+MODULES += src/xorg/xserver
+MODULES += src/xorg/driver/xf86-input-void
+MODULES += src/xorg/driver/xf86-video-dummy
+MODULES += src/xorg/driver/xf86-video-nested
+
+MODULES += src/xquartz/xserver
+
+# We want X to be Xquartz by default
+#sudo rm -f ${DESTDIR}${PREFIX}/bin/X
+#sudo ln -s Xquartz ${DESTDIR}${PREFIX}/bin/X
+#sudo rm -f ${PREFIX}/bin/X
+#sudo ln -s Xquartz ${PREFIX}/bin/X
+
+# TODO: Do we want to do anything with the tests?
+MODULES += src/xorg/test/rendercheck
+MODULES += src/xorg/test/x11perf
+MODULES += src/xorg/test/xhiv
+MODULES += src/xorg/test/xorg-gtest
+MODULES += src/xorg/test/xorg-integration-tests
+MODULES += src/xorg/test/xts
+# need to add https://gitlab.freedesktop.org/xorg/test/xtsttopng.git
+#MODULES += esrc/xorg/test/xtsttopng
