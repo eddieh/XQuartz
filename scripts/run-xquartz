@@ -1,0 +1,9 @@
+# This script will set the necessary environment (based on $PREFIX),
+# then it will run XQuartz
+
+# PKG_CONFIG_PATH=/opt/cairo/lib/pkgconfig
+# LD_LIBRARY_PATH=/opt/cairo/lib
+# export PKG_CONFIG_PATH LD_LIBRARY_PATH
+
+#(NOTE: On Mac OS X, at least, use DYLD_LIBRARY_PATH in place
+#	       of LD_LIBRARY_PATH above.)
