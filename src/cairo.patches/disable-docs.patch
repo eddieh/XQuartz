@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 8d23ae0c1..50745dea7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -23,7 +23,7 @@ LT_PREREQ([2.2])
+ LT_INIT([win32-dll])
+ 
+ # Api documentation
+-GTK_DOC_CHECK([1.15],[--flavour no-tmpl])
++# GTK_DOC_CHECK([1.15],[--flavour no-tmpl])
+ 
+ AC_SYS_LARGEFILE
+ 

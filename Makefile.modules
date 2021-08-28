@@ -9,6 +9,7 @@ FREETYPE_MODULE += src/freetype2
 NOT_XORG_MODULES += src/pixman
 NOT_XORG_MODULES += src/fontconfig
 
+# prereq
 XORG_MACROS += src/xorg/util/macros
 
 DOC_MODULES += src/xorg/doc/xorg-docs
@@ -20,9 +21,12 @@ XORG_MODULES += src/xorg/proto/xcbproto
 XORG_MODULES += src/xorg/util/bdftopcf
 XORG_MODULES += src/xorg/util/lndir
 
-XORG_MODULES += src/xorg/font/util
+# prereq
+XORG_FONT_UTIL += src/xorg/font/util
 
-XORG_MODULES += src/xorg/lib/libxtrans
+# prereq
+XORG_XTRANS += src/xorg/lib/libxtrans
+
 XORG_MODULES += src/xorg/lib/pthread-stubs
 
 XORG_MODULES += src/xorg/lib/libXau
@@ -170,7 +174,7 @@ XORG_MODULES += src/xorg/app/xwd
 XORG_MODULES += src/xorg/app/xwininfo
 XORG_MODULES += src/xorg/app/xwud
 
-NOT_XORG_MODULES += src/xterm
+XTERM_MODULES += src/xterm
 
 XORG_MODULES += src/xorg/data/cursors
 
@@ -240,14 +244,17 @@ CAIRO_MODULE += src/cairo
 # TODO: xpyb
 # MODULES += src/xorg/lib/xpyb
 
-NOT_XORG_MODULES += src/xkeyboard-config
+XORG_MODULES += src/xkeyboard-config
 
 XORG_MODULES += src/xorg/xserver
-XORG_MODULES += src/xorg/driver/xf86-input-void
-XORG_MODULES += src/xorg/driver/xf86-video-dummy
-XORG_MODULES += src/xorg/driver/xf86-video-nested
 
-NOT_XORG_MODULES += src/xquartz/xserver
+
+# these need autoreconf to run after src/xorg/xserver install
+XORG_DRIVERS += src/xorg/driver/xf86-input-void
+XORG_DRIVERS += src/xorg/driver/xf86-video-dummy
+XORG_DRIVERS += src/xorg/driver/xf86-video-nested
+
+XORG_MODULES += src/xquartz/xserver
 
 # We want X to be Xquartz by default
 #sudo rm -f ${DESTDIR}${PREFIX}/bin/X
@@ -269,7 +276,11 @@ SUBMODULES += $(PNG_MODULES)
 SUBMODULES += $(FREETYPE_MODULE)
 SUBMODULES += $(NOT_XORG_MODULES)
 SUBMODULES += $(XORG_MACROS)
+SUBMODULES += $(XORG_FONT_UTIL)
+SUBMODULES += $(XORG_XTRANS)
 SUBMODULES += $(XORG_MODULES)
+SUBMODULES += $(XORG_DRIVERS)
+SUBMODULES += $(XTERM_MODULES)
 SUBMODULES += $(DOC_MODULES)
 SUBMODULES += $(MESON_MODULES)
 SUBMODULES += $(GLU_MODULES)
@@ -288,3 +299,6 @@ MODULES += $(NOT_A_SUBMODULES)
 
 ODDBALL_MODULES += $(FREETYPE_MODULE)
 ODDBALL_MODULES += $(CAIRO_MODULE)
+
+GL_MODULES += $(GLU_MODULES)
+GL_MODULES += $(GLUT_MODULES)

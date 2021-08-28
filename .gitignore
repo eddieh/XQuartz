@@ -6,6 +6,8 @@
 submodules.initialized
 products
 applied
+*.patch.applied
+*-user.confopt
 XQuartz-*.d
 XQuartz-*.dSYMS.tar.bz2*
 XQuartz-*.dmg*

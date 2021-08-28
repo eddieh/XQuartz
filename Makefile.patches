@@ -1,0 +1,10 @@
+# -*- mode: Makefile;-*-
+
+PATCHES += src/cairo.patches/disable-docs.patch
+PATCHES += src/cairo.patches/dont-override-recheck.patch
+
+PATCHES += src/xorg/lib/libXpresent.patches/no-m4.patch
+
+PATCHES += src/mesa/mesa.patches/include-timespec_get-decl.patch
+
+PATCHES += src/freeglut.patches/no-progs.patch

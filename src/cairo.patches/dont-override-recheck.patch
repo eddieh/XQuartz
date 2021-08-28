@@ -1,0 +1,25 @@
+diff --git a/test/Makefile.am b/test/Makefile.am
+index 8e271fe9b..e0e9f7b4a 100644
+--- a/test/Makefile.am
++++ b/test/Makefile.am
+@@ -348,10 +348,10 @@ clean-caches:
+ #FAILED_TESTS = `grep -l '\<FAIL\>' $(test_sources:.c=.log) 2>/dev/null | sed -e 's/[.]log$$//' | xargs echo`
+ FAILED_TESTS = `grep -l '\<FAIL\>' $(test_sources:.c=.log) 2>/dev/null | tr '\n' ' ' | sed -e 's/[.]log  */ /g; s/^ //; s/ $$//'`
+ 
+-recheck = check CAIRO_TESTS="$(FAILED_TESTS)"
++recheck-failed = check CAIRO_TESTS="$(FAILED_TESTS)"
+ 
+ # Re-checks all failed tests, i.e. tests with a log file that has a failure
+-recheck:
++recheck-failed:
+ 	@echo Re-checking failed tests
+ 	@$(MAKE) $(AM_MAKEFLAGS) $(recheck)
+ 
+@@ -404,6 +404,6 @@ results.tar.gz: results.tar
+ 
+ release-verify-sane-tests:
+ 
+-.PHONY: check-valgrind test recheck retest check-ref-dups release-verify-sane-tests
++.PHONY: check-valgrind test recheck-failed retest check-ref-dups release-verify-sane-tests
+ 
+ EXTRA_DIST += Makefile.win32
