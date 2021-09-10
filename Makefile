@@ -45,13 +45,13 @@ MODULES += libXdmcp
 
 MODULES += xcb-proto
 MODULES += libxcb
-# MODULES += libxcb-util
-# MODULES += libxcb-render-util
-# MODULES += libxcb-image
-# MODULES += libxcb-cursor
-# MODULES += libxcb-errors
-# MODULES += libxcb-keysyms
-# MODULES += libxcb-wm
+MODULES += libxcb-util
+MODULES += libxcb-render-util
+MODULES += libxcb-image
+MODULES += libxcb-cursor
+MODULES += libxcb-errors
+MODULES += libxcb-keysyms
+MODULES += libxcb-wm
 
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
 
