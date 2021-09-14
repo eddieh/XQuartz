@@ -56,6 +56,39 @@ MODULES += libxcb-wm
 MODULES += libpng16
 MODULES += freetype2
 MODULES += fontconfig
+MODULES += font-util
+
+MODULES += libxtrans
+MODULES += libX11
+MODULES += libXext
+MODULES += libFS
+MODULES += libICE
+MODULES += libSM
+MODULES += libXScrnSaver
+MODULES += libXt
+MODULES += libXmu
+MODULES += libXpm
+MODULES += libXaw
+MODULES += libXfixes
+MODULES += libXcomposite
+MODULES += libXrender
+MODULES += libXcursor
+MODULES += libXdamage
+MODULES += libfontenc
+MODULES += libXfont2
+MODULES += libXft
+MODULES += libXi
+MODULES += libXinerama
+MODULES += libXrandr
+MODULES += libXres
+MODULES += libXtst
+MODULES += libXv
+MODULES += libXvMC
+MODULES += libXxf86dga
+MODULES += libXxf86vm
+MODULES += libdmx
+MODULES += libxkbfile
+MODULES += libxshmfence
 
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
 
@@ -169,7 +202,13 @@ $(foreach m,$(MODULES),\
 $(ACLDIR):
 	mkdir -p $(ACLDIR)
 
-$(REL_PREFIX)/share/aclocal/xorg-macros.m4: $(ACLDIR)
+$(REL_PREFIX)/share/aclocal/xorg-macros.m4: | $(ACLDIR)
+
+## Default target
+alltargets = $(foreach m,$(MODULES),$($(m)_INST_ARTIFACT))
+
+.DEFAULT_GOAL = all
+all: $(alltargets)
 
 ## Maintenance tasks
 clean:

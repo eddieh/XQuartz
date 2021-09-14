@@ -9,5 +9,5 @@ BUILD_STYLE=	make
 
 INSTALL_TARGET=	install-strip
 
-MAKE_ARTIFACT= 	image/libxcb-cursor.la
+MAKE_ARTIFACT= 	cursor/libxcb-cursor.la
 INST_ARTIFACT=	$(REL_PREFIX)/lib/pkgconfig/xcb-cursor.pc

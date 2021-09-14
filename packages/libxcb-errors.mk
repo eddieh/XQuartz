@@ -9,5 +9,5 @@ BUILD_STYLE=	make
 
 INSTALL_TARGET=	install-strip
 
-MAKE_ARTIFACT= 	src/libxcb-errors.la
+MAKE_ARTIFACT= 	libxcb-errors.la
 INST_ARTIFACT=	$(REL_PREFIX)/lib/pkgconfig/xcb-errors.pc
