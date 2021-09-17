@@ -90,6 +90,10 @@ MODULES += libdmx
 MODULES += libxkbfile
 MODULES += libxshmfence
 
+MODULES += libAppleWM
+
+MODULES += mesa
+
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
 
 show-config:
@@ -100,6 +104,7 @@ show-config:
 
 ## Package management
 PKGDIR = packages
+PATCHDIR = patches
 
 define clear-module-vars
 undefine PKGNAME
@@ -112,6 +117,8 @@ undefine BUILD_STYLE
 undefine CONFIG_OPTS
 undefine MAKE_ARTIFACT
 undefine INST_ARTIFACT
+undefine CONFIG_PATCHES
+undefine BUILD_PATCHES
 endef
 
 define make-module-vars
@@ -126,10 +133,30 @@ $(m)_BUILD_STYLE := $(BUILD_STYLE)
 $(m)_CONFIG_OPTS := $(CONFIG_OPTS)
 $(m)_MAKE_ARTIFACT := $(MAKE_ARTIFACT)
 $(m)_INST_ARTIFACT := $(INST_ARTIFACT)
+$(m)_CONFIG_PATCHES := $(CONFIG_PATCHES:%.patch=$(PATCHDIR)/%.patch.applied)
+$(m)_BUILD_PATCHES := $(BUILD_PATCHES:%.patch=$(PATCHDIR)/%.patch.applied)
 $(eval $(clear-module-vars))
 endef
 
+define make-module-deps
+$(m)_CONFIG_DEPS += $($(m)_CONFIG_PATCHES)
+$(m)_BUILD_DEPS += $($(m)_BUILD_PATCHES)
+$(m)_PATCHES += $($(m)_CONFIG_PATCHES)
+$(m)_PATCHES += $($(m)_BUILD_PATCHES)
+endef
+
+show-deps:
+	@echo mesa_CONFIG_DEPS= $(mesa_CONFIG_DEPS)
+	@echo mesa_BUILD_DEPS= $(mesa_BUILD_DEPS)
+
+define make-patch-rule
+$($(m)_PATCHES): %.patch.applied: %.patch
+	patch -d $($(m)_SRCROOT) -p1 < $$< && date > $$@
+endef
+
 $(foreach m,$(MODULES),$(eval $(make-module-vars)))
+$(foreach m,$(MODULES),$(eval $(make-module-deps)))
+$(foreach m,$(MODULES),$(eval $(make-patch-rule)))
 
 # 1) pkg name
 # 2) src root
@@ -146,6 +173,9 @@ $(2)/Makefile: $(2)/configure
 
 $(5): $(2)/Makefile
 	$(MAKE) install -C $(2)
+
+$(2)/configure: $($(1)_CONFIG_DEPS)
+$(2)/Makefile: $($(1)_BUILD_DEPS)
 endef
 
 # 1) pkg name
@@ -166,6 +196,9 @@ $(4): $(2)/Makefile
 
 $(5): $(4)
 	$(MAKE) install -C $(2)
+
+$(2)/configure: $($(1)_CONFIG_DEPS)
+$(2)/Makefile: $($(1)_BUILD_DEPS)
 endef
 
 # 1) pkg name
@@ -186,8 +219,32 @@ $(4): $(2)/builds/unix/unix-cc.mk
 
 $(5): $(4)
 	$(MAKE) install -C $(2)
+
+$(2)/builds/unix/configure: $($(1)_CONFIG_DEPS)
+$(2)/builds/unix/unix-cc.mk: $($(1)_BUILD_DEPS)
 endef
 
+# 1) pkg name
+# 2) src root
+# 3) dependencies
+# 4) make artifact
+# 5) install artifact
+define meson-build
+$(2)/build/build.ninja: $(2)/meson.build $(3)
+	cd $(2) && meson build -Dprefix=$(PREFIX) \
+		$$($(1)_CONFIG_OPTS)
+
+$(4): $(2)/build/build.ninja
+	ninja -C $(2)/build
+
+$(5): $(4)
+	ninja -C $(2)/build install
+#	either ninja or meson is preserving the modification timestamp
+	touch $(5)
+
+$(2)/meson.build: $($(1)_CONFIG_DEPS)
+$(2)/build/build.ninja: $($(1)_BUILD_DEPS)
+endef
 
 deps = $(foreach d,$(1),$$($(d)_INST_ARTIFACT))
 
@@ -212,5 +269,5 @@ all: $(alltargets)
 
 ## Maintenance tasks
 clean:
-	-rm -rf $(REL_PREFIX)
+	-rm -rf $(REL_PREFIX) src/mesa/mesa/build
 	git submodule foreach 'git clean -Xf'

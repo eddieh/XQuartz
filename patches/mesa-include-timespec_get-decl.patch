@@ -1,0 +1,13 @@
+diff --git a/src/util/u_queue.c b/src/util/u_queue.c
+index b456871290d..fc9beacca62 100644
+--- a/src/util/u_queue.c
++++ b/src/util/u_queue.c
+@@ -39,3 +39,5 @@
+ #include <sys/syscall.h>
+ #endif
+
++#include <time.h>
++int timespec_get(struct timespec *ts, int base);
+
+ /* Define 256MB */
+ #define S_256MB (256 * 1024 * 1024)
