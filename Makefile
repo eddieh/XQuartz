@@ -34,6 +34,8 @@ export ACLOCAL = aclocal -I $(PREFIX)/share/aclocal
 export PKG_CONFIG_PATH = \
 	$(PREFIX)/share/pkgconfig:$(PREFIX)/lib/pkgconfig
 
+export FONTPATH = "${PREFIX}/share/fonts/misc/,${PREFIX}/share/fonts/TTF/,${PREFIX}/share/fonts/OTF,${PREFIX}/share/fonts/Type1/,${PREFIX}/share/fonts/75dpi/:unscaled,${PREFIX}/share/fonts/100dpi/:unscaled,${PREFIX}/share/fonts/75dpi/,${PREFIX}/share/fonts/100dpi/,/Library/Fonts,${PREFIX}/share/system_fonts"
+
 XORG_CONFIG = --prefix=$(PREFIX)
 
 ## Modules
@@ -93,6 +95,71 @@ MODULES += libxshmfence
 MODULES += libAppleWM
 
 MODULES += mesa
+
+MODULES += xbitmaps
+MODULES += xcursor-themes
+MODULES += xkeyboard-config
+
+MODULES += pixman
+
+MODULES += xorg-server
+
+# MODULES += xf86-input-void
+# MODULES += xf86-video-dummy
+# MODULES += xf86-video-nested
+
+# MODULES += xquartz-server
+
+# # fonts
+# MODULES += encodings
+# MODULES += font-alias
+# MODULES += font-adobe-utopia-type1
+# MODULES += font-bh-ttf
+# MODULES += font-bh-type1
+# MODULES += font-ibm-type1
+# MODULES += font-xfree86-type1
+
+# # applications
+# MODULES += iceauth
+# MODULES += luit
+# MODULES += mkfontscale
+# MODULES += sessreg
+# MODULES += setxkbmap
+# MODULES += smproxy
+# MODULES += x11perf
+# MODULES += xauth
+# MODULES += xbacklight
+# MODULES += xcmsdb
+# MODULES += xcursorgen
+# MODULES += xdpyinfo
+# MODULES += xdriinfo
+# MODULES += xev
+# MODULES += xgamma
+# MODULES += xhost
+# MODULES += xinput
+# MODULES += xkbcomp
+# MODULES += xkbevd
+# MODULES += xkbutils
+# MODULES += xkill
+# MODULES += xlsatoms
+# MODULES += xlsclients
+# MODULES += xmessage
+# MODULES += xmodmap
+# MODULES += xpr
+# MODULES += xprop
+# MODULES += xrandr
+# MODULES += xrdb
+# MODULES += xrefresh
+# MODULES += xset
+# MODULES += xsetroot
+# MODULES += xvinfo
+# MODULES += xwd
+# MODULES += xwininfo
+# MODULES += xwud
+
+# MODULES += twm
+# MODULES += xterm
+# MODULES += xinit
 
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
 
