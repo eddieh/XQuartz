@@ -104,9 +104,9 @@ MODULES += pixman
 
 MODULES += xorg-server
 
-# MODULES += xf86-input-void
-# MODULES += xf86-video-dummy
-# MODULES += xf86-video-nested
+MODULES += xf86-input-void
+MODULES += xf86-video-dummy
+MODULES += xf86-video-nested
 
 # MODULES += xquartz-server
 
