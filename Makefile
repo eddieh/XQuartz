@@ -12,7 +12,7 @@ PKGDIR = $(REL_PREFIX)/share/pkgconfig
 LIBDIR = $(REL_PREFIX)/lib
 LIBPKGDIR = $(REL_PREFIX)/lib/pkgconfig
 
-APP_PATH = $(PREFIX)/Application/Utilities
+APP_PATH = $(PREFIX)/Applications/Utilities
 
 APP_FRAMEWORKS =
 ifdef ENABLE_SPARKLE
@@ -35,6 +35,12 @@ export PKG_CONFIG_PATH = \
 	$(PREFIX)/share/pkgconfig:$(PREFIX)/lib/pkgconfig
 
 export FONTPATH = "${PREFIX}/share/fonts/misc/,${PREFIX}/share/fonts/TTF/,${PREFIX}/share/fonts/OTF,${PREFIX}/share/fonts/Type1/,${PREFIX}/share/fonts/75dpi/:unscaled,${PREFIX}/share/fonts/100dpi/:unscaled,${PREFIX}/share/fonts/75dpi/,${PREFIX}/share/fonts/100dpi/,/Library/Fonts,${PREFIX}/share/system_fonts"
+
+APPLICATION_PATH = $(APP_PATH)
+IDENTIFIER_PREFIX = org.xquartz
+
+APPLICATION_VERSION = 66
+APPLICATION_VERSION_STRING = "66 (Super-Charger Heaven)"
 
 XORG_CONFIG = --prefix=$(PREFIX)
 
@@ -108,21 +114,21 @@ MODULES += xf86-input-void
 MODULES += xf86-video-dummy
 MODULES += xf86-video-nested
 
-# MODULES += xquartz-server
+MODULES += xquartz-server
 
 # # fonts
-# MODULES += encodings
-# MODULES += font-alias
-# MODULES += font-adobe-utopia-type1
+MODULES += encodings
+MODULES += font-alias
+MODULES += font-adobe-utopia-type1
 # MODULES += font-bh-ttf
-# MODULES += font-bh-type1
-# MODULES += font-ibm-type1
-# MODULES += font-xfree86-type1
+MODULES += font-bh-type1
+MODULES += font-ibm-type1
+MODULES += font-xfree86-type1
 
 # # applications
 # MODULES += iceauth
 # MODULES += luit
-# MODULES += mkfontscale
+MODULES += mkfontscale
 # MODULES += sessreg
 # MODULES += setxkbmap
 # MODULES += smproxy
@@ -232,7 +238,7 @@ $(foreach m,$(MODULES),$(eval $(make-patch-rule)))
 # 5) install artifact
 define autotools-install-only
 $(2)/configure: $(2)/configure.ac $(3)
-	cd $(2) && autoreconf -vi
+	cd $(2) && autoreconf -vif
 
 $(2)/Makefile: $(2)/configure
 	cd $(2) && ./configure $$(XORG_CONFIG) \
@@ -252,7 +258,7 @@ endef
 # 5) install artifact
 define autotools-make
 $(2)/configure: $(2)/configure.ac $(3)
-	cd $(2) && autoreconf -vi
+	cd $(2) && autoreconf -vif
 
 $(2)/Makefile: $(2)/configure
 	cd $(2) && ./configure $$(XORG_CONFIG) \
