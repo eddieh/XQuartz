@@ -126,8 +126,8 @@ MODULES += font-ibm-type1
 MODULES += font-xfree86-type1
 
 # # applications
-# MODULES += iceauth
-# MODULES += luit
+MODULES += iceauth
+MODULES += luit
 MODULES += mkfontscale
 # MODULES += sessreg
 # MODULES += setxkbmap
@@ -163,6 +163,7 @@ MODULES += mkfontscale
 # MODULES += xwininfo
 # MODULES += xwud
 
+# MODULES += quartz-wm
 # MODULES += twm
 # MODULES += xterm
 # MODULES += xinit
