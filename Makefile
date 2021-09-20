@@ -165,7 +165,7 @@ MODULES += xwud
 
 MODULES += quartz-wm
 MODULES += twm
-#MODULES += xterm
+MODULES += xterm
 MODULES += xinit
 
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
