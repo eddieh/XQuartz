@@ -1,0 +1,15 @@
+PKGNAME=	x11perf
+PKGROOT=	src/xorg/app/x11perf
+SRCROOT=	$(PKGROOT)
+
+DEPS=
+
+BUILD_FLAVOR=	autotools
+BUILD_STYLE=	make
+
+CONFIG_OPTS=
+
+INSTALL_TARGET=	install-strip
+
+MAKE_ARTIFACT=	x11perf
+INST_ARTIFACT=	$(REL_PREFIX)/bin/x11perf

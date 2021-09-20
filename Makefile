@@ -129,44 +129,44 @@ MODULES += font-xfree86-type1
 MODULES += iceauth
 MODULES += luit
 MODULES += mkfontscale
-# MODULES += sessreg
-# MODULES += setxkbmap
-# MODULES += smproxy
-# MODULES += x11perf
-# MODULES += xauth
-# MODULES += xbacklight
-# MODULES += xcmsdb
-# MODULES += xcursorgen
-# MODULES += xdpyinfo
-# MODULES += xdriinfo
-# MODULES += xev
-# MODULES += xgamma
-# MODULES += xhost
-# MODULES += xinput
-# MODULES += xkbcomp
-# MODULES += xkbevd
-# MODULES += xkbutils
-# MODULES += xkill
-# MODULES += xlsatoms
-# MODULES += xlsclients
-# MODULES += xmessage
-# MODULES += xmodmap
-# MODULES += xpr
-# MODULES += xprop
-# MODULES += xrandr
-# MODULES += xrdb
-# MODULES += xrefresh
-# MODULES += xset
-# MODULES += xsetroot
-# MODULES += xvinfo
-# MODULES += xwd
-# MODULES += xwininfo
-# MODULES += xwud
+MODULES += sessreg
+MODULES += setxkbmap
+MODULES += smproxy
+#MODULES += x11perf
+MODULES += xauth
+MODULES += xbacklight
+MODULES += xcmsdb
+MODULES += xcursorgen
+MODULES += xdpyinfo
+#MODULES += xdriinfo
+MODULES += xev
+MODULES += xgamma
+MODULES += xhost
+MODULES += xinput
+MODULES += xkbcomp
+MODULES += xkbevd
+MODULES += xkbutils
+MODULES += xkill
+MODULES += xlsatoms
+MODULES += xlsclients
+MODULES += xmessage
+MODULES += xmodmap
+MODULES += xpr
+MODULES += xprop
+MODULES += xrandr
+MODULES += xrdb
+MODULES += xrefresh
+MODULES += xset
+MODULES += xsetroot
+MODULES += xvinfo
+MODULES += xwd
+MODULES += xwininfo
+MODULES += xwud
 
-# MODULES += quartz-wm
-# MODULES += twm
-# MODULES += xterm
-# MODULES += xinit
+MODULES += quartz-wm
+MODULES += twm
+#MODULES += xterm
+MODULES += xinit
 
 MODULES := $(filter-out $(EXCLUDE_MODULES),$(MODULES))
 
@@ -262,6 +262,26 @@ $(2)/configure: $(2)/configure.ac $(3)
 	cd $(2) && autoreconf -vif
 
 $(2)/Makefile: $(2)/configure
+	cd $(2) && ./configure $$(XORG_CONFIG) \
+		$$($(1)_CONFIG_OPTS)
+
+$(4): $(2)/Makefile
+	$(MAKE) -C $(2)
+
+$(5): $(4)
+	$(MAKE) install -C $(2)
+
+$(2)/configure: $($(1)_CONFIG_DEPS)
+$(2)/Makefile: $($(1)_BUILD_DEPS)
+endef
+
+# 1) pkg name
+# 2) src root
+# 3) dependencies
+# 4) make artifact
+# 5) install artifact
+define configure-make
+$(2)/Makefile: $(2)/configure $(3)
 	cd $(2) && ./configure $$(XORG_CONFIG) \
 		$$($(1)_CONFIG_OPTS)
 
