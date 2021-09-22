@@ -1,0 +1,119 @@
+MODULES += xorg-macros
+MODULES += xorgproto
+MODULES += libXau
+
+MODULES += libXdmcp
+
+MODULES += xcb-proto
+MODULES += libxcb
+MODULES += libxcb-util
+MODULES += libxcb-render-util
+MODULES += libxcb-image
+MODULES += libxcb-cursor
+MODULES += libxcb-errors
+MODULES += libxcb-keysyms
+MODULES += libxcb-wm
+
+MODULES += libpng16
+MODULES += freetype2
+MODULES += fontconfig
+MODULES += font-util
+
+MODULES += libxtrans
+MODULES += libX11
+MODULES += libXext
+MODULES += libFS
+MODULES += libICE
+MODULES += libSM
+MODULES += libXScrnSaver
+MODULES += libXt
+MODULES += libXmu
+MODULES += libXpm
+MODULES += libXaw
+MODULES += libXfixes
+MODULES += libXcomposite
+MODULES += libXrender
+MODULES += libXcursor
+MODULES += libXdamage
+MODULES += libfontenc
+MODULES += libXfont2
+MODULES += libXft
+MODULES += libXi
+MODULES += libXinerama
+MODULES += libXrandr
+MODULES += libXres
+MODULES += libXtst
+MODULES += libXv
+MODULES += libXvMC
+MODULES += libXxf86dga
+MODULES += libXxf86vm
+MODULES += libdmx
+MODULES += libxkbfile
+MODULES += libxshmfence
+
+MODULES += libAppleWM
+
+MODULES += mesa
+
+MODULES += xbitmaps
+MODULES += xcursor-themes
+MODULES += xkeyboard-config
+
+MODULES += pixman
+
+MODULES += xorg-server
+
+MODULES += xf86-input-void
+MODULES += xf86-video-dummy
+MODULES += xf86-video-nested
+
+MODULES += xquartz-server
+
+# # fonts
+MODULES += encodings
+MODULES += font-alias
+MODULES += font-adobe-utopia-type1
+MODULES += font-bh-type1
+MODULES += font-ibm-type1
+MODULES += font-xfree86-type1
+
+# # applications
+MODULES += iceauth
+MODULES += luit
+MODULES += mkfontscale
+MODULES += sessreg
+MODULES += setxkbmap
+MODULES += smproxy
+MODULES += xauth
+MODULES += xbacklight
+MODULES += xcmsdb
+MODULES += xcursorgen
+MODULES += xdpyinfo
+MODULES += xev
+MODULES += xgamma
+MODULES += xhost
+MODULES += xinput
+MODULES += xkbcomp
+MODULES += xkbevd
+MODULES += xkbutils
+MODULES += xkill
+MODULES += xlsatoms
+MODULES += xlsclients
+MODULES += xmessage
+MODULES += xmodmap
+MODULES += xpr
+MODULES += xprop
+MODULES += xrandr
+MODULES += xrdb
+MODULES += xrefresh
+MODULES += xset
+MODULES += xsetroot
+MODULES += xvinfo
+MODULES += xwd
+MODULES += xwininfo
+MODULES += xwud
+
+MODULES += quartz-wm
+MODULES += twm
+MODULES += xterm
+MODULES += xinit
