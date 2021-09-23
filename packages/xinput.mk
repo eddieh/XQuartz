@@ -11,5 +11,5 @@ CONFIG_OPTS=
 
 INSTALL_TARGET=	install-strip
 
-MAKE_ARTIFACT=	xinput
+MAKE_ARTIFACT=	src/xinput
 INST_ARTIFACT=	$(REL_PREFIX)/bin/xinput

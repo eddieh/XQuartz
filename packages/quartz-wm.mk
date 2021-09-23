@@ -12,5 +12,5 @@ CONFIG_OPTS=	--with-bundle-id-prefix=${IDENTIFIER_PREFIX}
 
 INSTALL_TARGET=	install-strip
 
-MAKE_ARTIFACT=	quartz-wm
+MAKE_ARTIFACT=	src/quartz-wm
 INST_ARTIFACT=	$(REL_PREFIX)/bin/quartz-wm
