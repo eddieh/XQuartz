@@ -7,7 +7,8 @@ DEPS=		xorgproto libX11
 BUILD_FLAVOR=	autotools
 BUILD_STYLE=	make
 
-CONFIG_OPTS=	--without-launchd
+CONFIG_OPTS=	--without-launchd \
+		--with-bundle-id-prefix=$(IDENTIFIER_PREFIX)
 
 INSTALL_TARGET=	install-strip
 
