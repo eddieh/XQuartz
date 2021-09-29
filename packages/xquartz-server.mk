@@ -1,4 +1,4 @@
-PKGNAME=	xorg-server
+PKGNAME=	xquartz-server
 PKGROOT=	src/xquartz/xserver
 SRCROOT=	$(PKGROOT)
 
@@ -24,3 +24,7 @@ INSTALL_TARGET=	install-strip
 
 MAKE_ARTIFACT=	hw/xquartz/libXquartz.la
 INST_ARTIFACT=	$(REL_PREFIX)/Applications/Utilities/XQuartz.app/Contents/MacOS/X11
+
+ifneq ($(filter debug, $(STYLE)),)
+CONFIG_PATCHES += xquartz-server-hard-error-missing-app.patch
+endif

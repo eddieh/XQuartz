@@ -1,0 +1,121 @@
+When developing/debugging it is helpful to ensure we're using the
+right .app. This patch hardcodes the path rather than allowing Launch
+Services to discover the path.
+
+diff --git a/configure.ac b/configure.ac
+index 7ba6d05ba..26a14c028 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -507,10 +507,12 @@ AC_ARG_WITH(apple-applications-dir,AS_HELP_STRING([--with-apple-applications-dir
+ 				[ APPLE_APPLICATIONS_DIR="${withval}" ],
+ 				[ APPLE_APPLICATIONS_DIR="/Applications/Utilities" ])
+ AC_SUBST([APPLE_APPLICATIONS_DIR])
++AC_DEFINE_UNQUOTED(APPLE_APPLICATIONS_DIR, "$APPLE_APPLICATIONS_DIR", [Path to the Applications directory])
+ AC_ARG_WITH(apple-application-name,AS_HELP_STRING([--with-apple-application-name=NAME], [Name for the .app (default: X11)]),
+ 				[ APPLE_APPLICATION_NAME="${withval}" ],
+ 				[ APPLE_APPLICATION_NAME="X11" ])
+ AC_SUBST([APPLE_APPLICATION_NAME])
++AC_DEFINE_UNQUOTED(APPLE_APPLICATION_NAME, "$APPLE_APPLICATION_NAME", [Name for the .app])
+ AC_ARG_WITH(bundle-id-prefix,  AS_HELP_STRING([--with-bundle-id-prefix=RDNS_PREFIX], [Prefix to use for bundle identifiers (default: org.x)]),
+                                [ BUNDLE_ID_PREFIX="${withval}" ])
+ AC_SUBST([BUNDLE_ID_PREFIX])
+diff --git a/hw/xquartz/mach-startup/stub.c b/hw/xquartz/mach-startup/stub.c
+index f5fef90fb..79cbbd3aa 100644
+--- a/hw/xquartz/mach-startup/stub.c
++++ b/hw/xquartz/mach-startup/stub.c
+@@ -38,11 +38,17 @@
+ #include <asl.h>
+
+ #include <sys/socket.h>
++#include <sys/stat.h>
+ #include <sys/un.h>
+
+ #define kX11AppBundleId   BUNDLE_ID_PREFIX ".X11"
+ #define kX11AppBundlePath "/Contents/MacOS/X11"
+
++#define kX11ApplicationDir APPLE_APPLICATIONS_DIR
++#define kX11ApplicationPackage APPLE_APPLICATION_NAME ".app"
++
++#define kX11ApplicationPath kX11ApplicationDir "/" kX11ApplicationPackage
++
+ #include <mach/mach.h>
+ #include <mach/mach_error.h>
+ #include <servers/bootstrap.h>
+@@ -60,46 +66,29 @@ static void
+ set_x11_path(void)
+ {
+     CFURLRef appURL = NULL;
+-    OSStatus osstatus =
+-        LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(
+-                                     kX11AppBundleId), nil, nil, &appURL);
++    struct stat statbuf;
+
+-    switch (osstatus) {
+-    case noErr:
+-        if (appURL == NULL) {
+-            asl_log(
+-                aslc, NULL, ASL_LEVEL_ERR,
+-                "Xquartz: Invalid response from LSFindApplicationForInfo(%s)",
+-                kX11AppBundleId);
+-            exit(1);
+-        }
++    appURL = CFURLCreateWithString(
++        NULL, CFSTR(kX11ApplicationPath), NULL);
+
+-        if (!CFURLGetFileSystemRepresentation(appURL, true,
++    if (!CFURLGetFileSystemRepresentation(appURL, true,
+                                               (unsigned char *)x11_path,
+                                               sizeof(x11_path))) {
+-            asl_log(aslc, NULL, ASL_LEVEL_ERR,
+-                    "Xquartz: Error resolving URL for %s",
+-                    kX11AppBundleId);
+-            exit(3);
+-        }
+-
+-        strlcat(x11_path, kX11AppBundlePath, sizeof(x11_path));
+-        asl_log(aslc, NULL, ASL_LEVEL_INFO, "Xquartz: X11.app = %s", x11_path);
+-        break;
+-
+-    case kLSApplicationNotFoundErr:
+         asl_log(aslc, NULL, ASL_LEVEL_ERR,
+-                "Xquartz: Unable to find application for %s",
+-                kX11AppBundleId);
+-        exit(10);
++                "Xquartz: Error locating app at %s",
++                    kX11ApplicationPath);
++        exit(12);
++    }
+
+-    default:
++    if (stat(x11_path, &statbuf) != 0) {
+         asl_log(aslc, NULL, ASL_LEVEL_ERR,
+-                "Xquartz: Unable to find application for %s, error code = %d",
+-                kX11AppBundleId,
+-                (int)osstatus);
+-        exit(11);
++                "Xquartz: Error app does not exist at %s",
++                    kX11ApplicationPath);
++        exit(13);
+     }
++
++    strlcat(x11_path, kX11AppBundlePath, sizeof(x11_path));
++    asl_log(aslc, NULL, ASL_LEVEL_INFO, "Xquartz: X11.app = %s", x11_path);
+ }
+
+ static int
+diff --git a/include/dix-config.h.in b/include/dix-config.h.in
+index f8fc67067..95b75b255 100644
+--- a/include/dix-config.h.in
++++ b/include/dix-config.h.in
+@@ -113,6 +113,12 @@
+ /* Prefix to use for bundle identifiers */
+ #undef BUNDLE_ID_PREFIX
+
++/* Path to the Applications directory */
++#undef APPLE_APPLICATIONS_DIR
++
++/* Name for the .app */
++#undef APPLE_APPLICATION_NAME
++
+ /* Build a standalone xpbproxy */
+ #undef STANDALONE_XPBPROXY
