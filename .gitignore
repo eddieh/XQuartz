@@ -11,3 +11,4 @@ XQuartz-*.dSYMS.tar.bz2*
 XQuartz-*.dmg*
 XQuartz-*.pkg*
 build
+TAGS

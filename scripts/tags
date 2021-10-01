@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#set -x
+
+srctree=${srctree}/src
+
+ignore=""
+
+# exclude src/xorg/xserver/hw/xquartz since we want to use
+# src/xquartz/xserver/hw/xquartz
+ignore="$ignore ( -path ${srctree}/xorg/xserver/hw/xquartz ) -prune -o"
+
+find $srctree $ignore -name "*.[chm]" -print | etags -

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#set -x
+
+level=debug
+process=X11.bin
+style=compact
+
+predicate=""
+
+# the log is noisy so we filter out any subsystem begining with com.*
+predicate="$predicate (NOT subsystem CONTAINS \"com\")"
+
+log stream --level $level --process $process --style $style \
+    --predicate "${predicate}"

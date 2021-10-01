@@ -1,6 +1,7 @@
 ## Config
 SRCROOT = .
 ABS_SRCROOT := $(shell cd $(SRCROOT) && pwd)
+srctree := $(ABS_SRCROOT)
 
 STYLE = debug
 REL_PREFIX := build/$(STYLE)
@@ -34,6 +35,8 @@ APPLICATION_VERSION = 66
 APPLICATION_VERSION_STRING = "66 (Super-Charger Heaven)"
 
 XORG_CONFIG = --prefix=$(PREFIX)
+
+export srctree
 
 ## Modules
 include Makefile.modules
@@ -73,7 +76,17 @@ alltargets = $(foreach m,$(MODULES),$($(m)_INST_ARTIFACT))
 .DEFAULT_GOAL = all
 all: $(alltargets)
 
+## Development tasks
+tags TAGS: FORCE
+	scripts/tags
+
+log: FORCE
+	scripts/log
+
 ## Maintenance tasks
 clean:
 	-rm -rf $(REL_PREFIX) src/mesa/mesa/build
 	git submodule foreach 'git clean -Xf'
+
+
+.PHONY: FORCE
